@@ -25,7 +25,6 @@
     <h1 class="text-center text-primary mt-3">Đăng ký</h1>
     <div class="row mt-4 justify-content-center">
         <div class="col-md-4">
-
             <form action=" <%=request.getContextPath() + UrlUtils.DANG_KY%>" method="post">
                 <div class="form-group">
                     <label for="fullname">Họ Tên</label>

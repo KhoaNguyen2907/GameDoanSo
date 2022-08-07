@@ -1,17 +1,16 @@
 package cybersoft.java18.backend.gamedoanso.servlet;
 
-import java.io.IOException;
+import cybersoft.java18.backend.gamedoanso.model.NguoiChoi;
+import cybersoft.java18.backend.gamedoanso.service.GameService;
+import cybersoft.java18.backend.gamedoanso.utils.JspUtils;
+import cybersoft.java18.backend.gamedoanso.utils.UrlUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import cybersoft.java18.backend.gamedoanso.model.NguoiChoi;
-import cybersoft.java18.backend.gamedoanso.service.GameService;
-import cybersoft.java18.backend.gamedoanso.utils.JspUtils;
-import cybersoft.java18.backend.gamedoanso.utils.UrlUtils;
+import java.io.IOException;
 
 @WebServlet(urlPatterns = {UrlUtils.DANG_NHAP, UrlUtils.DANG_KY}, name = "authServlet")
 public class AuthServlet extends HttpServlet {
@@ -47,23 +46,29 @@ public class AuthServlet extends HttpServlet {
         }
     }
 
-    private void processLogin(HttpServletRequest req, HttpServletResponse resp) {
+    private void processLogin(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         String userName = req.getParameter("username");
         String password = req.getParameter("password");
-        NguoiChoi newPlayer = GameService.getINSTANCE().dangNhap(userName,password);
+        NguoiChoi newPlayer = GameService.getINSTANCE().dangNhap(userName, password);
+        if (newPlayer != null) {
+            resp.sendRedirect(req.getContextPath() + UrlUtils.GAME);
+        } else {
+            req.setAttribute("error", "Wrong password");
+            req.getRequestDispatcher(JspUtils.DANG_NHAP).forward(req, resp);
+        }
     }
 
     private void processRegister(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         String userName = req.getParameter("username");
         String password = req.getParameter("password");
         String fullName = req.getParameter("fullname");
-        NguoiChoi newPlayer = GameService.getINSTANCE().dangKy(userName,password,fullName);
-        if (newPlayer != null){
-            req.getSession().setAttribute("currentUser",newPlayer);
+        NguoiChoi newPlayer = GameService.getINSTANCE().dangKy(userName, password, fullName);
+        if (newPlayer != null) {
+            req.getSession().setAttribute("currentUser", newPlayer);
             resp.sendRedirect(req.getContextPath() + UrlUtils.GAME);
         } else {
-            req.setAttribute("error","Invalid Information");
-            req.getRequestDispatcher(JspUtils.DANG_KY).forward(req,resp);
+            req.setAttribute("error", "Invalid Information");
+            req.getRequestDispatcher(JspUtils.DANG_KY).forward(req, resp);
         }
     }
 
