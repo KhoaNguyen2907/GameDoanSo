@@ -34,9 +34,9 @@
                            placeholder="Nhập mật khẩu">
                 </div>
 
-                <div class="row justify-content-center mt-4">
+                <div class="mt-4">
                     <% if (request.getAttribute("error") != null) { %>
-                    <div class="alert alert-danger" role="alert">
+                    <div class=" alert alert-danger text-center" role="alert">
                         <%=request.getAttribute("error")%>
                     </div>
                     <%}%>

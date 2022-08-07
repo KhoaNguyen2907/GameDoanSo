@@ -2,15 +2,15 @@ package cybersoft.java18.backend.gamedoanso.model;
 
 import java.util.List;
 
-public class NguoiChoi {
+public class Player {
 	private String userName;
 	private String password;
-	private List<ManChoi> manChoi;
+	private List<GameSession> gameSession;
 	private String name;
 	
 	
 	
-	public NguoiChoi(String userName, String password, String name) {
+	public Player(String userName, String password, String name) {
 		super();
 		this.userName = userName;
 		this.password = password;
@@ -25,8 +25,8 @@ public class NguoiChoi {
 		return password;
 	}
 	
-	public List<ManChoi> getManChoi() {
-		return manChoi;
+	public List<GameSession> getManChoi() {
+		return gameSession;
 	}
 	
 	public String getName() {

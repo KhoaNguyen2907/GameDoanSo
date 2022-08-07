@@ -1,25 +1,25 @@
 
-t
-java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ˆŠ–Æşÿÿÿÿ
 o
-java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(şÉæ¼
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(¬Ïâ“
+o
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(öòÀ÷
 t
-java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÿáÿæşÿÿÿÿ
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(’ë¶ûÿÿÿÿ
+G
+java:S3010"*Remove this assignment of "dsGameSession".(¬Ïâ“8ËÆ—Ä§0
+B
+java:S3010"%Remove this assignment of "dsPlayer".(öòÀ÷8é“™Ä§0
 A
-java:S3010"&Remove this assignment of "dsManChoi".(ˆŠ–Æşÿÿÿÿ
->
-java:S3010"(Remove this assignment of "dsNguoiChoi".(şÉæ¼
-A
-java:S3010"&Remove this assignment of "dsLanDoan".(ÿáÿæşÿÿÿÿ
+java:S3010"&Remove this assignment of "dsLanDoan".(’ë¶ûÿÿÿÿ
 Q
-java:S2696"6Make the enclosing method "static" or remove this set.(Çëıÿÿÿÿ
+java:S2696"6Make the enclosing method "static" or remove this set.(—©øüÿÿÿÿ
 P
-java:S2209"5Change this instance-reference to a static reference.(Çëıÿÿÿÿ
+java:S2209"5Change this instance-reference to a static reference.(—©øüÿÿÿÿ
 Q
-java:S2696"6Make the enclosing method "static" or remove this set.(¯Æáƒøÿÿÿÿ
+java:S2696!"6Make the enclosing method "static" or remove this set.(â„óÿÿÿÿÿ
 P
-java:S2209"5Change this instance-reference to a static reference.(¯Æáƒøÿÿÿÿ
+java:S2209!"5Change this instance-reference to a static reference.(â„óÿÿÿÿÿ
 Q
-java:S2696%"6Make the enclosing method "static" or remove this set.(ëù¶“ûÿÿÿÿ
+java:S2696'"6Make the enclosing method "static" or remove this set.(ëù¶“ûÿÿÿÿ
 P
-java:S2209%"5Change this instance-reference to a static reference.(ëù¶“ûÿÿÿÿ
+java:S2209'"5Change this instance-reference to a static reference.(ëù¶“ûÿÿÿÿ

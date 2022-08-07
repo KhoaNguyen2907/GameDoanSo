@@ -1,10 +1,10 @@
 package cybersoft.java18.backend.gamedoanso.model;
 
-public class LanDoan {
+public class Guess {
 	private final int soDoan;
 	private String ketQua;
 
-	public LanDoan(int soDoan) {
+	public Guess(int soDoan) {
 		this.soDoan = soDoan;
 	}
 

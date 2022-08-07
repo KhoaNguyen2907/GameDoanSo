@@ -4,18 +4,18 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Random;
 
-public class ManChoi {
+public class GameSession {
 	private static int soId = 1;
 	private static Random random = null;
 	private String id;
-	private List<LanDoan> lanDoan;
+	private List<Guess> lanDoan;
 	private LocalDateTime startTime;
 	private LocalDateTime endTime;
 	private int soNgauNhien;
 	private boolean hoanThanh;
-	private NguoiChoi name;
+	private Player name;
 	
-	public ManChoi(String nguoiChoi) {
+	public GameSession(String nguoiChoi) {
 		this.id = "Game " + String.format("%05d", soId++);
 		this.soNgauNhien = getRandomInt();
 	}
@@ -27,10 +27,10 @@ public class ManChoi {
 		return random.nextInt(1000 - 1) +1;
 	}
 	
-	public List<LanDoan> getLanDoan() {
+	public List<Guess> getLanDoan() {
 		return lanDoan;
 	}
-	public void setLanDoan(List<LanDoan> lanDoan) {
+	public void setLanDoan(List<Guess> lanDoan) {
 		this.lanDoan = lanDoan;
 	}
 	public LocalDateTime getStartTime() {
