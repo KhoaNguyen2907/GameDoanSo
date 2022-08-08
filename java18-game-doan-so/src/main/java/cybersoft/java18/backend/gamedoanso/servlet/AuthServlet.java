@@ -53,7 +53,7 @@ public class AuthServlet extends HttpServlet {
     private void processLogin(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         String userName = req.getParameter("username");
         String password = req.getParameter("password");
-        Player newPlayer = GameService.getINSTANCE().dangNhap(userName, password);
+        Player newPlayer = GameService.getINSTANCE().login(userName, password);
         if (newPlayer != null) {
             req.getSession().setAttribute("currentUser", newPlayer);
             resp.sendRedirect(req.getContextPath() + UrlUtils.GAME);
@@ -67,7 +67,7 @@ public class AuthServlet extends HttpServlet {
         String userName = req.getParameter("username");
         String password = req.getParameter("password");
         String fullName = req.getParameter("fullname");
-        Player newPlayer = GameService.getINSTANCE().dangKy(userName, password, fullName);
+        Player newPlayer = GameService.getINSTANCE().register(userName, password, fullName);
         if (newPlayer != null) {
             req.getSession().setAttribute("currentUser", newPlayer);
             resp.sendRedirect(req.getContextPath() + UrlUtils.GAME);

@@ -11,7 +11,6 @@ public class Player {
 	
 	
 	public Player(String userName, String password, String name) {
-		super();
 		this.userName = userName;
 		this.password = password;
 		this.name = name;
@@ -25,7 +24,7 @@ public class Player {
 		return password;
 	}
 	
-	public List<GameSession> getManChoi() {
+	public List<GameSession> getGameSessionList() {
 		return gameSession;
 	}
 	

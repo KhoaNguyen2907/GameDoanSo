@@ -16,16 +16,20 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = {UrlUtils.GAME, UrlUtils.XEP_HANG}, name = "gameServlet")
 public class GameServlet extends HttpServlet {
+    private GameService gameService;
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        gameService = GameService.getINSTANCE();
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         switch (req.getServletPath()) {
             case UrlUtils.GAME:
                 Player currentUser = (Player) req.getSession().getAttribute("currentUser");
-                GameSession currentGame = (GameSession) req.getSession().getAttribute("currentGame");
-                if ( currentGame == null){
-                    currentGame = GameService.getINSTANCE().createGame(currentUser.getUserName());
-                }
-
+                GameSession currentGame = gameService.getCurrentGame(currentUser.getUserName());
+                req.setAttribute("game",currentGame);
                 req.getRequestDispatcher(JspUtils.GAME).forward(req, resp);
                 break;
             case UrlUtils.XEP_HANG:

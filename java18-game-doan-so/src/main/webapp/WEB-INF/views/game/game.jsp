@@ -64,6 +64,7 @@
     </div>
     <div class="row justify-content-center mt-5">
         <div class="col-md-8">
+            ${game.id}
             <table class="table table-borderless">
                 <thead>
                 <tr>
