@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ page import="cybersoft.java18.backend.gamedoanso.utils.UrlUtils" %>
+<%@ page import="cybersoft.java18.backend.gamedoanso.repository.GuessRepository" %>
+<%@ page import="java.util.List" %>
+<%@ page import="cybersoft.java18.backend.gamedoanso.model.Guess" %>
+<%@ page import="cybersoft.java18.backend.gamedoanso.model.GameSession" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html lang="en">
@@ -43,10 +47,15 @@
     </div>
 </nav>
 <div class="container">
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-8">
-            <h2 class="text text-primary text-center">MỜI BẠN ĐOÁN SỐ</h2>
+    <div class="row mt-5 justify-content-end">
+        <div class="col-md-4">
+            <h2 class="text text-primary text-center ">MỜI BẠN ĐOÁN SỐ</h2>
         </div>
+        <div class="col-md-4  ">
+            <a name="newgame" id="newgame" class="btn btn-primary justify-content-end"
+               href="<%=request.getContextPath() + UrlUtils.NEW_GAME%>" role="button">New game</a>
+        </div>
+
     </div>
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -54,7 +63,7 @@
                 <div class="form-group form-row">
                     <label for="number"></label>
                     <input type="number" class="form-control form-control-lg text-center col-4 offset-4"
-                           id="number" name="number">
+                           id="number" name="number" required>
                 </div>
                 <div class="form-row align-items-center">
                     <button type="submit" class="btn btn-outline-primary btn-lg col-4 offset-4">Đoán</button>
@@ -65,6 +74,11 @@
     <div class="row justify-content-center mt-5">
         <div class="col-md-8">
             ${game.id}
+            <div class="row justify-content-center">
+                <c:if test="${completedMess != null}">
+                    <h3>${completedMess}</h3>
+                </c:if>
+            </div>
             <table class="table table-borderless">
                 <thead>
                 <tr>
@@ -75,24 +89,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="table-success">
-                    <th scope="row">1</th>
-                    <td>113</td>
-                    <td>Chính xác!!!</td>
-                    <td>27/11/1991 19:19:20</td>
-                </tr>
-                <tr class="table-danger">
-                    <th scope="row">2</th>
-                    <td>225</td>
-                    <td>Số bạn đoán lớn hơn kết quả.</td>
-                    <td>27/11/1991 19:19:20</td>
-                </tr>
-                <tr class="table-warning">
-                    <th scope="row">3</th>
-                    <td>113</td>
-                    <td>Số bạn đoán bé hơn kết quả.</td>
-                    <td>27/11/1991 19:19:20</td>
-                </tr>
+                <c:forEach var="guess" items="${guessList}" varStatus="loop">
+                    <tr class="table-${guess.code}">
+                        <th scope="row">${loop.index+1}</th>
+                        <td>${guess.guessNum}</td>
+                        <td>${guess.result}</td>
+                        <td>${guess.timestamp}</td>
+                    </tr>
+                </c:forEach>
+
                 </tbody>
             </table>
         </div>

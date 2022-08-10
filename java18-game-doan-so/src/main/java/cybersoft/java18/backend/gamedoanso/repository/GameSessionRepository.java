@@ -14,6 +14,7 @@ public class GameSessionRepository {
         store = GameStoreHolder.getStore();
     }
 
+
     public List<GameSession> findGamesByUserName(String userName) {
         return store.getGameSessionList().stream()
                 .filter(gs -> gs.getUserName().equals(userName))

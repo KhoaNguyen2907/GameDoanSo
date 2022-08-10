@@ -1,6 +1,7 @@
 package cybersoft.java18.backend.gamedoanso.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -29,9 +30,11 @@ public class GameSession {
     }
 
     public GameSession(String userName) {
+        this.isCompleted = false;
         this.userName = userName;
         this.id = "Game " + String.format("%05d", soId++);
         this.targetNumber = getRandomInt();
+        this.guessList= new ArrayList<>();
     }
 
     public String getUserName() {
@@ -42,13 +45,16 @@ public class GameSession {
         if (random == null) {
             random = new Random();
         }
-        return random.nextInt(1000 - 1) + 1;
+        return random.nextInt(4 - 1) + 1;
     }
 
     public List<Guess> getGuessList() {
         return guessList;
     }
 
+    public void setGuessList(List<Guess> guessList) {
+        this.guessList = guessList;
+    }
 
     public LocalDateTime getStartTime() {
         return startTime;
