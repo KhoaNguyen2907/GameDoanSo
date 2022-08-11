@@ -1,7 +1,5 @@
 package cybersoft.java18.backend.gamedoanso.service;
 
-import java.util.List;
-
 import cybersoft.java18.backend.gamedoanso.model.GameSession;
 import cybersoft.java18.backend.gamedoanso.model.Guess;
 import cybersoft.java18.backend.gamedoanso.model.Player;
@@ -11,8 +9,13 @@ import cybersoft.java18.backend.gamedoanso.repository.PlayerRepository;
 import cybersoft.java18.backend.gamedoanso.store.GameStore;
 import cybersoft.java18.backend.gamedoanso.store.GameStoreHolder;
 
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.util.List;
+
 public class GameService {
     private static GameService INSTANCE;
+    private final GameStore store = GameStoreHolder.getStore();
     PlayerRepository playerRepository = new PlayerRepository();
     GameSessionRepository gameSessionRepository = new GameSessionRepository();
     GuessRepository guessRepository = new GuessRepository();
@@ -23,8 +26,6 @@ public class GameService {
         }
         return INSTANCE;
     }
-
-    private final GameStore store = GameStoreHolder.getStore();
 
     public GameSession getCurrentGame(String userName) {
         //Get list of game session by username.
@@ -65,7 +66,8 @@ public class GameService {
     }
 
     public Player register(String userName, String password, String name) {
-        return playerRepository.save(userName, password, name);
+        playerRepository.save(userName, password, name);
+        return playerRepository.findByUserName(userName);
     }
 
     public GameSession createGame(String userName) {
@@ -74,6 +76,7 @@ public class GameService {
         // Crate game;
         GameSession gameSession = new GameSession(userName);
         // Then active current game.
+        gameSession.setStartTime(LocalDateTime.now());
         gameSession.setActive(true);
         gameSessionRepository.save(gameSession);
         return gameSession;
@@ -85,36 +88,20 @@ public class GameService {
                 .forEach(gs -> gs.setActive(false));
     }
 
-    public List<GameSession> xepHang() {
-        return null;
-
-    }
-
-    public GameSession doanSo(GameSession gameSession, int so) {
-
-        return gameSession;
-    }
 
 
-    public int checkNumber(int number, String userName) {
-       int targetNumber = gameSessionRepository.findGamesByUserName(userName)
-                .stream().filter(gs -> gs.isActive())
-                .findFirst().orElseThrow(NullPointerException::new).getTargetNumber();
-        if (number > targetNumber ){
-            return 1;
-        } else if (number < targetNumber) {
-            return -1;
-        } else {
-            return 0;
-        }
-    }
-
-    public GameSession addGuess(int number, int resultId, GameSession currentGame) {
-        guessRepository.getGuessList().add(new Guess(number,resultId,currentGame));
+    public GameSession addGuess(int number, String result, GameSession currentGame) {
+        // Create guess (timestamp's already init in constructor).
+        Guess guess = new Guess(number, result, currentGame);
+        guessRepository.addGuess(guess);
         return currentGame;
     }
 
-    public List<Guess> getGuessListByGameId(String gameId){
+    public List<Guess> getGuessListByGameId(String gameId) {
         return (List<Guess>) guessRepository.findGuessListByIdGame(gameId);
+    }
+
+    public void setCompletedGame(GameSession currentGame) {
+        gameSessionRepository.update(currentGame);
     }
 }

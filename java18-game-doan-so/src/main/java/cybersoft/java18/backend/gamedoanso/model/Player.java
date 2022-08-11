@@ -5,8 +5,9 @@ import java.util.List;
 public class Player {
 	private String userName;
 	private String password;
-	private List<GameSession> gameSession;
 	private String name;
+
+	private List<GameSession> gameSession;
 	
 	
 	

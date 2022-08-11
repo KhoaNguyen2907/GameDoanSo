@@ -1,11 +1,3 @@
 
-D
-java:S1128"/Remove this unused import 'java.sql.Timestamp'.(èò½+
-K
-java:S1128"0Remove this unused import 'java.time.LocalDate'.(›‘¬èýÿÿÿÿ
-U
-java:S1128"?Remove this unused import 'java.time.format.DateTimeFormatter'.(‰÷÷ª
-O
-java:S1128"9Remove this unused import 'java.time.format.FormatStyle'.(óóÿ½
-F
-java:S1128	"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Åèÿ°
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Åèÿ°

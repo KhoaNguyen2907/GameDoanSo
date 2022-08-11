@@ -1,15 +1,9 @@
 
 i
-java:S3008"SRename this field "INSTANCE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(®òèÑ
+java:S3008"SRename this field "INSTANCE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(®òèÑ
 ]
-java:S1612'"BReplace this lambda with method reference 'GameSession::isActive'.(Ü‰‡ÿÿÿÿÿ
-Q	java:S125H"<This block of commented-out lines of code should be removed.(Ô’Ğ 
-V	java:S125J"<This block of commented-out lines of code should be removed.(ø¢ñçüÿÿÿÿ
+java:S1612("BReplace this lambda with method reference 'GameSession::isActive'.(Ü‰‡ÿÿÿÿÿ
+Q	java:S125J"<This block of commented-out lines of code should be removed.(Ô’Ğ 
+V	java:S125L"<This block of commented-out lines of code should be removed.(ø¢ñçüÿÿÿÿ
 ]
-java:S1612T"BReplace this lambda with method reference 'GameSession::isActive'.(ÏË»ëûÿÿÿÿ
-A
-java:S1168Y"+Return an empty collection instead of null.(¥¹ï
-D
-java:S1172]")Remove this unused method parameter "so".(³Î†‚şÿÿÿÿ
-X
-java:S1612e"BReplace this lambda with method reference 'GameSession::isActive'.(ŒÊÍ±
+java:S1612W"BReplace this lambda with method reference 'GameSession::isActive'.(ÏË»ëûÿÿÿÿ

@@ -90,10 +90,18 @@
                 </thead>
                 <tbody>
                 <c:forEach var="guess" items="${guessList}" varStatus="loop">
-                    <tr class="table-${guess.code}">
+                    <tr class="
+                        <c:if test="${guess.result eq 'correct'}">table-success</c:if>
+                        <c:if test="${guess.result eq 'greater'}">table-danger</c:if>
+                        <c:if test="${guess.result eq 'smaller'}">table-warning</c:if>
+                    ">
                         <th scope="row">${loop.index+1}</th>
                         <td>${guess.guessNum}</td>
-                        <td>${guess.result}</td>
+                        <td>
+                            <c:if test="${guess.result eq 'correct'}">Bạn đã đoán đúng. Kết quả: ${game.targetNumber}</c:if>
+                            <c:if test="${guess.result eq 'greater'}">Số bạn đoán lớn hơn kết quả</c:if>
+                            <c:if test="${guess.result eq 'smaller'}">Số bạn đoán bé hơn kết quả</c:if>
+                        </td>
                         <td>${guess.timestamp}</td>
                     </tr>
                 </c:forEach>

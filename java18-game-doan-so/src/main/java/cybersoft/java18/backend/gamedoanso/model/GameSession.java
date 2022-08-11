@@ -1,5 +1,6 @@
 package cybersoft.java18.backend.gamedoanso.model;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,13 +10,32 @@ public class GameSession {
     private static int soId = 1;
     private static Random random = null;
     private final String id;
+    private final int targetNumber;
     private List<Guess> guessList;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-    private final int targetNumber;
     private boolean isCompleted;
     private boolean isActive;
     private String userName;
+
+    public GameSession(String id, int targetNumber, LocalDateTime startTime, String userName, boolean isCompleted, boolean isActive) {
+        this.id = id;
+        this.guessList = new ArrayList<>();
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.targetNumber = targetNumber;
+        this.isCompleted = isCompleted;
+        this.isActive = isActive;
+        this.userName = userName;
+    }
+
+    public GameSession(String userName) {
+        this.isCompleted = false;
+        this.userName = userName;
+        this.id = "Game " + String.format("%05d", soId++);
+        this.targetNumber = getRandomInt();
+        this.guessList = new ArrayList<>();
+    }
 
     public boolean isActive() {
         return isActive;
@@ -29,14 +49,6 @@ public class GameSession {
         return id;
     }
 
-    public GameSession(String userName) {
-        this.isCompleted = false;
-        this.userName = userName;
-        this.id = "Game " + String.format("%05d", soId++);
-        this.targetNumber = getRandomInt();
-        this.guessList= new ArrayList<>();
-    }
-
     public String getUserName() {
         return userName;
     }
@@ -45,7 +57,7 @@ public class GameSession {
         if (random == null) {
             random = new Random();
         }
-        return random.nextInt(4 - 1) + 1;
+        return random.nextInt(10 - 1) + 1;
     }
 
     public List<Guess> getGuessList() {

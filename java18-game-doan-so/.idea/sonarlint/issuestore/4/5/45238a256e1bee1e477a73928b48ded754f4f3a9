@@ -1,0 +1,7 @@
+
+[	java:S112<"FDefine and throw a dedicated exception instead of using a generic one.(õÏûÌ
+[	java:S112M"FDefine and throw a dedicated exception instead of using a generic one.(õÏûÌ
+j
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(·Ç‚æøÿÿÿÿ
+H
+java:S1172@"2Remove this unused method parameter "currentGame".(ü–İÎ

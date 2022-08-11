@@ -51,7 +51,6 @@ public class GameServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        var soDoan = req.getParameter("number");
         switch (req.getServletPath()) {
             case UrlUtils.GAME:
                 Player currentUser = (Player) req.getSession().getAttribute("currentUser");
@@ -72,15 +71,14 @@ public class GameServlet extends HttpServlet {
     private void processGame(HttpServletRequest req, HttpServletResponse resp, Player currentUser, GameSession currentGame) {
         int number = Integer.parseInt(req.getParameter("number"));
 
-        if (gameService.checkNumber(number,currentUser.getUserName()) == 1){
-            currentGame = gameService.addGuess(number, 1,currentGame);
+        if (number > currentGame.getTargetNumber()){
+            currentGame = gameService.addGuess(number, "greater",currentGame);
 
-        } else if (gameService.checkNumber(number, currentUser.getUserName()) == -1){
-            currentGame = gameService.addGuess(number,-1,currentGame);
+        } else if (number < currentGame.getTargetNumber()){
+            currentGame = gameService.addGuess(number,"smaller",currentGame);
         } else {
-            currentGame = gameService.addGuess(number,0,currentGame);
-            currentGame.setCompleted(true);
-            currentGame.setActive(false);
+            currentGame = gameService.addGuess(number,"correct",currentGame);
+            gameService.setCompletedGame(currentGame);
         }
         req.getSession().setAttribute("game", currentGame);
         req.setAttribute("guessList",gameService.getGuessListByGameId(currentGame.getId()));

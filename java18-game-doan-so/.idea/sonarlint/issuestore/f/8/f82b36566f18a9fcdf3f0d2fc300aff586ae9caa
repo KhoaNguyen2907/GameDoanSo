@@ -1,10 +1,10 @@
 
 b
 java:S1192 "LDefine a constant instead of duplicating this literal "currentUser" 3 times.(„¿£ä
-g
-java:S1192#"JDefine a constant instead of duplicating this literal "guessList" 3 times.(û²ÛÝ8¾ÄšÍ¨0
+`
+java:S1192#"JDefine a constant instead of duplicating this literal "guessList" 3 times.(û²ÛÝ
 a
-java:S13017"KReplace this "switch" statement by "if" statements to increase readability.(Ýðôï
+java:S13016"KReplace this "switch" statement by "if" statements to increase readability.(Ýðôï
 W
 java:S2441""AMake "GameSession" serializable or don't store it in the session.(Ž¸Ë×
 |
@@ -17,17 +17,11 @@ java:S2441,"AMake "GameSession" serializable or don't store it in the session.(
 java:S1989-"aHandle the following exceptions that could be thrown by "forward": ServletException, IOException.(ßõýêÿÿÿÿÿ
 w
 java:S19890"aHandle the following exceptions that could be thrown by "forward": ServletException, IOException.(ùû¡˜
-U
-java:S18546":Remove this useless assignment to local variable "soDoan".(ÂÕùŒýÿÿÿÿ
-F
-java:S14816"+Remove this unused "soDoan" local variable.(ÂÕùŒýÿÿÿÿ
 |
-java:S1989A"aHandle the following exceptions that could be thrown by "forward": ServletException, IOException.(ßõýêÿÿÿÿÿ
+java:S1989@"aHandle the following exceptions that could be thrown by "forward": ServletException, IOException.(ßõýêÿÿÿÿÿ
 w
-java:S1989D"aHandle the following exceptions that could be thrown by "forward": ServletException, IOException.(ùû¡˜
-F
-java:S1172H"+Remove this unused method parameter "resp".(ïÖéÑþÿÿÿÿ
+java:S1989C"aHandle the following exceptions that could be thrown by "forward": ServletException, IOException.(ùû¡˜
 W
-java:S2441U"AMake "GameSession" serializable or don't store it in the session.(Ž¸Ë×
-s
-java:S1128"VRemove this unused import 'cybersoft.java18.backend.gamedoanso.store.GameStoreHolder'.(Ÿ¯«ß8·¤‹Í¨0
+java:S1172G"<Remove these unused method parameters "resp", "currentUser".(ïÖéÑþÿÿÿÿ
+W
+java:S2441S"AMake "GameSession" serializable or don't store it in the session.(Ž¸Ë×

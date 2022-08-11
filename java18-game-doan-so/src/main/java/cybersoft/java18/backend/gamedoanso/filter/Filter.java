@@ -25,7 +25,8 @@ public class Filter implements javax.servlet.Filter {
 
     private boolean isAuthURL(HttpServletRequest req) {
         var url = req.getServletPath();
-        if (url.startsWith(UrlUtils.DANG_NHAP) || url.startsWith(UrlUtils.DANG_KY)){
+        if (url.startsWith(UrlUtils.DANG_NHAP) || url.startsWith(UrlUtils.DANG_KY)
+        || url.startsWith(UrlUtils.HEALTH)){
             return true;
         }
         return false;

@@ -1,39 +1,30 @@
 package cybersoft.java18.backend.gamedoanso.model;
 
-import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
-import java.time.format.FormatStyle;
-import java.util.List;
 
 public class Guess {
     private final int guessNum;
-    private String result;
-    private final String code;
-    private LocalDateTime timestamp;
     private final String gameSessionId;
+    private final LocalDateTime timestamp;
+    private String result;
 
 
-    public String getGameSessionId(){
-        return this.gameSessionId;
-    }
-
-    public Guess(int guessNum,int resultId, GameSession gameSession ) {
+    public Guess(int guessNum, String result, GameSession gameSession) {
         this.gameSessionId = gameSession.getId();
         this.guessNum = guessNum;
         timestamp = LocalDateTime.now();
-        if(resultId == 0){
-            this.result = "Bạn đã đoán đúng. Kết quả: " + gameSession.getTargetNumber();
-            this.code = "success";
-        } else if (resultId == 1){
-            this.result = "Số bạn đoán lớn hơn kết quả";
-            this.code = "danger";
-        } else {
-            this.result = "Số bạn đoán bé hơn kết quả";
-            this.code = "warning";
-        }
+        this.result = result;
+    }
+
+    public Guess(int guess_num, String result, LocalDateTime timestamp, String game_session_id) {
+            this.guessNum = guess_num;
+            this.result = result;
+            this.timestamp = timestamp;
+            this.gameSessionId = game_session_id;
+    }
+
+    public String getGameSessionId() {
+        return this.gameSessionId;
     }
 
     public LocalDateTime getTimestamp() {
@@ -52,7 +43,4 @@ public class Guess {
         return this.guessNum;
     }
 
-    public String getCode() {
-        return code;
-    }
 }
