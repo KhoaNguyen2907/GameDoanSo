@@ -1,13 +1,17 @@
-<%@ page import="cybersoft.java18.backend.gamedoanso.utils.UrlUtils" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+<%@ page import="cybersoft.java18.backend.gamedoanso.utils.UrlUtils" %><%--
+  Created by IntelliJ IDEA.
+  User: Admin
+  Date: 12/08/2022
+  Time: 5:39 CH
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <!doctype html>
 <html lang="en">
 
 <head>
-    <title>Đoán Số</title>
+    <title>Danh sách game đã chơi</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,6 +19,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Fontawsome Icon CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 </head>
 
 <body>
@@ -48,25 +55,77 @@
 </nav>
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8 ">
-            <h1 class=" text-center text-primary mt-5">Bảng xếp hạng</h1>
-            <table class="table table-bordered  mt-5 text-center ">
+        <div class="col-md-12 ">
+            <h1 class=" text-center text-primary mt-5">Các màn chơi của bạn</h1>
+            <table class="table table-bordered mt-5 text-center ">
                 <thead>
                 <tr>
-                    <th>Xếp hạng</th>
-                    <th>Người chơi</th>
+                    <th>Game</th>
+                    <th>Kết quả</th>
                     <th>Số lượt đoán</th>
+                    <th>Thời gian bắt đầu</th>
+                    <th>Thời gian kết thúc</th>
+                    <th>Trạng thái</th>
+                    <th>Tùy chọn</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="topRank" items="${topList}" varStatus="rankNum">
-                    <tr>
-                        <td scope="row">${rankNum.index + 1}</td>
-                        <td>${topRank.name}</td>
-                        <td>${topRank.guessTimes} lượt</td>
 
+                <c:forEach var="game" items="${gameList}" varStatus="id">
+                    <c:if test="${game.completed eq true}">
+                        <tr class="table-success">
+                    </c:if>
+                    <c:if test="${game.completed eq false}">
+                        <tr class="table-danger">
+                    </c:if>
+                    <td scope="row">${id.index+1}</td>
+                    <td class ="align-middle">
+                        <c:if test="${game.completed eq true}">
+                            ${game.targetNumber}
+                        </c:if>
+                        <c:if test="${game.completed eq false}">
+                            <i class="bi bi-question-lg"></i>
+                            <i class="bi bi-question-lg"></i>
+                            <i class="bi bi-question-lg"></i>
+                        </c:if>
+                    </td>
+                    <td class ="align-middle">${game.guessList.size()} lượt</td>
+                    <td class ="align-middle">${game.startTime.format(game.formatter)}</td>
+                    <td class ="align-middle">
+                        <c:if test="${game.endTime ne null}">
+                            ${game.endTime.format(game.formatter)}
+                        </c:if>
+                        <c:if test="${game.endTime eq null}">
+                            Chưa hoàn thành
+                        </c:if>
+
+                    </td>
+                    <td class ="align-middle">
+                        <c:if test="${game.completed eq true}">
+                            <i class="bi bi-check-square-fill"></i>
+                        </c:if>
+                        <c:if test="${game.completed eq false}">
+                            <i class="bi bi-x-square"></i>
+                        </c:if>
+                    </td>
+                    <td class ="align-middle">
+                        <c:if test="${game.completed eq true}">
+                            <form action="<%=request.getContextPath() + UrlUtils.GAME%>" method="get">
+                                <input type="hidden" name="id" value="${game.id}">
+                                <input type="submit" class="btn btn-secondary disabled" disabled value="Đã hoàn thành">
+                            </form>
+                        </c:if>
+                        <c:if test="${game.completed eq false}">
+                            <form action=" <%= request.getContextPath() + UrlUtils.GAME %>" method="get">
+                                <input type="hidden" name="id" value="${game.id}">
+                                <button type="submit" class="btn btn-primary"><i class="bi bi-play-fill"></i> Chơi tiếp</button>
+
+                            </form>
+                        </c:if>
+                    </td>
                     </tr>
                 </c:forEach>
+
                 </tbody>
             </table>
             <div class=" row justify-content-center mt-5">

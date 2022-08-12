@@ -20,7 +20,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-    <a class="navbar-brand font-weight-bold" href="#">Trò Chơi Đoán Số</a>
+    <a class="navbar-brand font-weight-bold" href="<%=request.getContextPath() + UrlUtils.ROOT%>">Trò Chơi Đoán Số</a>
     <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item active">
@@ -48,12 +48,16 @@
 </nav>
 <div class="container">
     <div class="row mt-5 justify-content-end">
+        <div class="col-md-4  ">
+            <a name="gamelist" id="gamelist" class="btn btn-primary justify-content-end"
+               href="<%=request.getContextPath() + UrlUtils.DANH_SACH_GAME%>" role="button">Game đã chơi</a>
+        </div>
         <div class="col-md-4">
             <h2 class="text text-primary text-center ">MỜI BẠN ĐOÁN SỐ</h2>
         </div>
         <div class="col-md-4  ">
             <a name="newgame" id="newgame" class="btn btn-primary justify-content-end"
-               href="<%=request.getContextPath() + UrlUtils.NEW_GAME%>" role="button">New game</a>
+               href="<%=request.getContextPath() + UrlUtils.NEW_GAME%>" role="button">Game mới</a>
         </div>
 
     </div>
@@ -73,7 +77,6 @@
     </div>
     <div class="row justify-content-center mt-5">
         <div class="col-md-8">
-            ${game.id}
             <div class="row justify-content-center">
                 <c:if test="${completedMess != null}">
                     <h3>${completedMess}</h3>
@@ -102,7 +105,7 @@
                             <c:if test="${guess.result eq 'greater'}">Số bạn đoán lớn hơn kết quả</c:if>
                             <c:if test="${guess.result eq 'smaller'}">Số bạn đoán bé hơn kết quả</c:if>
                         </td>
-                        <td>${guess.timestamp}</td>
+                        <td>${guess.timestamp.format(guess.formatter)}</td>
                     </tr>
                 </c:forEach>
 

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = {UrlUtils.DANG_NHAP, UrlUtils.DANG_KY}, name = "authServlet")
+@WebServlet(urlPatterns = {UrlUtils.DANG_NHAP, UrlUtils.DANG_KY, UrlUtils.DANG_XUAT}, name = "authServlet")
 public class AuthServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -26,10 +26,12 @@ public class AuthServlet extends HttpServlet {
                 }
                 req.getRequestDispatcher(JspUtils.DANG_NHAP).forward(req, resp);
                 break;
-
             case UrlUtils.DANG_KY:
                 req.getRequestDispatcher(JspUtils.DANG_KY).forward(req, resp);
                 break;
+            case UrlUtils.DANG_XUAT:
+                req.getSession().removeAttribute("currentUser");
+                resp.sendRedirect(req.getContextPath() + UrlUtils.ROOT);
             default:
                 break;
         }

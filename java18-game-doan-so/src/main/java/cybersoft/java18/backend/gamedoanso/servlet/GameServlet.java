@@ -1,7 +1,10 @@
 package cybersoft.java18.backend.gamedoanso.servlet;
 
+import cybersoft.java18.backend.gamedoanso.Game;
 import cybersoft.java18.backend.gamedoanso.model.GameSession;
+import cybersoft.java18.backend.gamedoanso.model.Guess;
 import cybersoft.java18.backend.gamedoanso.model.Player;
+import cybersoft.java18.backend.gamedoanso.model.TopRank;
 import cybersoft.java18.backend.gamedoanso.service.GameService;
 import cybersoft.java18.backend.gamedoanso.store.GameStoreHolder;
 import cybersoft.java18.backend.gamedoanso.utils.JspUtils;
@@ -13,8 +16,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet(urlPatterns = {UrlUtils.GAME, UrlUtils.XEP_HANG, UrlUtils.NEW_GAME},
+@WebServlet(urlPatterns = {UrlUtils.GAME, UrlUtils.XEP_HANG, UrlUtils.NEW_GAME, UrlUtils.DANH_SACH_GAME},
         name = "gameServlet")
 public class GameServlet extends HttpServlet {
     private GameService gameService;
@@ -30,12 +34,18 @@ public class GameServlet extends HttpServlet {
         switch (req.getServletPath()) {
             case UrlUtils.GAME:
                 Player currentUser = (Player) req.getSession().getAttribute("currentUser");
+                String id = req.getParameter("id");
+                if (id != null) {
+                    gameService.setActiveGameById(id,currentUser.getUserName());
+                }
                 GameSession currentGame = gameService.getCurrentGame(currentUser.getUserName());
                 req.getSession().setAttribute("game", currentGame);
                 req.setAttribute("guessList",gameService.getGuessListByGameId(currentGame.getId()));
                 req.getRequestDispatcher(JspUtils.GAME).forward(req, resp);
                 break;
             case UrlUtils.XEP_HANG:
+                List<TopRank> topList = gameService.getTopList(10);
+                req.setAttribute("topList",topList);
                 req.getRequestDispatcher(JspUtils.XEP_HANG).forward(req, resp);
                 break;
             case UrlUtils.NEW_GAME:
@@ -43,6 +53,14 @@ public class GameServlet extends HttpServlet {
                 currentGame = gameService.createGame(currentUser.getUserName());
                 req.getSession().setAttribute("game", currentGame);
                 req.getRequestDispatcher(JspUtils.GAME).forward(req, resp);
+                break;
+            case UrlUtils.DANH_SACH_GAME:
+                currentUser = (Player) req.getSession().getAttribute("currentUser");
+                List<GameSession> gameList = gameService.getGameListByUsername(currentUser.getUserName());
+                gameList.forEach(g->g.getGuessList()
+                        .addAll(gameService.getGuessListByGameId(g.getId())));
+                req.getSession().setAttribute("gameList", gameList);
+                req.getRequestDispatcher(JspUtils.DANH_SACH_GAME).forward(req, resp);
                 break;
             default:
                 req.getRequestDispatcher(JspUtils.NOT_FOUND).forward(req, resp);

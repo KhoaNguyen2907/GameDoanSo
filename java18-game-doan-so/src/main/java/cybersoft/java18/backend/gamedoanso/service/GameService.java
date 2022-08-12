@@ -1,16 +1,20 @@
 package cybersoft.java18.backend.gamedoanso.service;
 
+import cybersoft.java18.backend.gamedoanso.Game;
 import cybersoft.java18.backend.gamedoanso.model.GameSession;
 import cybersoft.java18.backend.gamedoanso.model.Guess;
 import cybersoft.java18.backend.gamedoanso.model.Player;
+import cybersoft.java18.backend.gamedoanso.model.TopRank;
 import cybersoft.java18.backend.gamedoanso.repository.GameSessionRepository;
 import cybersoft.java18.backend.gamedoanso.repository.GuessRepository;
 import cybersoft.java18.backend.gamedoanso.repository.PlayerRepository;
+import cybersoft.java18.backend.gamedoanso.repository.TopRankRepository;
 import cybersoft.java18.backend.gamedoanso.store.GameStore;
 import cybersoft.java18.backend.gamedoanso.store.GameStoreHolder;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 
 public class GameService {
@@ -19,6 +23,7 @@ public class GameService {
     PlayerRepository playerRepository = new PlayerRepository();
     GameSessionRepository gameSessionRepository = new GameSessionRepository();
     GuessRepository guessRepository = new GuessRepository();
+    TopRankRepository topRankRepository = new TopRankRepository();
 
     public static GameService getINSTANCE() {
         if (INSTANCE == null) {
@@ -44,7 +49,7 @@ public class GameService {
             }
         }
         //Get guess list and add to game.
-        List<Guess> guessList = (List<Guess>) guessRepository.findGuessListByIdGame(activeGame.getId());
+        List<Guess> guessList =  guessRepository.findGuessListByIdGame(activeGame.getId());
 
         if (guessList.isEmpty()) {
             return activeGame;
@@ -76,7 +81,6 @@ public class GameService {
         // Crate game;
         GameSession gameSession = new GameSession(userName);
         // Then active current game.
-        gameSession.setStartTime(LocalDateTime.now());
         gameSession.setActive(true);
         gameSessionRepository.save(gameSession);
         return gameSession;
@@ -88,7 +92,12 @@ public class GameService {
         gameList.forEach(gs -> gameSessionRepository.update(gs));
     }
 
-
+    public void setActiveGameById(String id, String username){
+        deactiveOtherGames(username);
+        GameSession game = gameSessionRepository.findGameById(id);
+        game.setActive(true);
+        gameSessionRepository.update(game);
+    }
 
     public GameSession addGuess(int number, String result, GameSession currentGame) {
         // Create guess (timestamp's already init in constructor).
@@ -98,12 +107,24 @@ public class GameService {
     }
 
     public List<Guess> getGuessListByGameId(String gameId) {
-        return (List<Guess>) guessRepository.findGuessListByIdGame(gameId);
+        return guessRepository.findGuessListByIdGame(gameId);
     }
 
     public void setCompletedGame(GameSession currentGame) {
         currentGame.setCompleted(true);
         currentGame.setEndTime(LocalDateTime.now());
         gameSessionRepository.update(currentGame);
+    }
+
+    public List<TopRank> getTopList(int amount) {
+        return topRankRepository.getTopRankList(amount);
+    }
+
+    public List<GameSession> getGameListByUsername(String userName) {
+        return gameSessionRepository.findGamesByUserName(userName);
+    }
+
+    public List<GameSession> getGameList() {
+        return gameSessionRepository.findAllGames();
     }
 }

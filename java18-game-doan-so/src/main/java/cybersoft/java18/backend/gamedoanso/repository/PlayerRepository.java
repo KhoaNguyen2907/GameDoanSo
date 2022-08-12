@@ -7,12 +7,17 @@ import cybersoft.java18.backend.gamedoanso.model.Player;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
 
 public class PlayerRepository extends AbstractRepository<Player> {
 
     public Player findByUserName(String userName) {
         String query = "select * from Player where username = ?";
-       return executeQuery(query,new PlayerMapper(),userName).get(0);
+       List<Player> playerList = executeQuery(query,new PlayerMapper(),userName);
+       if ( !playerList.isEmpty()){
+           return playerList.get(0);
+       }
+       return null;
     }
 
 

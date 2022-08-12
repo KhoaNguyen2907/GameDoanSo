@@ -9,7 +9,7 @@ public class GameSessionRepository extends AbstractRepository<GameSession> {
 
     public List<GameSession> findGamesByUserName(String userName) {
         String query = "select * from GameSession where username = ?";
-        return executeQuery(query, new GameSessionMapper(),userName);
+        return executeQuery(query, new GameSessionMapper(), userName);
     }
 
     public void save(GameSession gameSession) {
@@ -46,4 +46,18 @@ public class GameSessionRepository extends AbstractRepository<GameSession> {
         }
     }
 
+    public GameSession findGameById(String id) {
+        String query = "select * from GameSession where id = ?";
+        List<GameSession> gameList = executeQuery(query, new GameSessionMapper(), id);
+        if (gameList != null) {
+            return gameList.get(0);
+        } else {
+            return null;
+        }
+    }
+
+    public List<GameSession> findAllGames() {
+        String query = "select * from GameSession";
+        return executeQuery(query, new GameSessionMapper());
+    }
 }

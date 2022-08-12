@@ -1,13 +1,21 @@
 package cybersoft.java18.backend.gamedoanso.model;
 
+import cybersoft.java18.backend.gamedoanso.repository.GameSessionRepository;
+import cybersoft.java18.backend.gamedoanso.service.GameService;
+
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class GameSession {
-    private static int soId = 1;
+    // Keep soId from reset when rerun server
+    private static GameService gameService = GameService.getINSTANCE();
+    private static int soId = gameService.getGameList().size()+1;
+
+    // Normal properties
     private static Random random = null;
     private final String id;
     private final int targetNumber;
@@ -17,6 +25,7 @@ public class GameSession {
     private boolean isCompleted;
     private boolean isActive;
     private String userName;
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
 
     public GameSession(String id, int targetNumber, LocalDateTime startTime, String userName, boolean isCompleted, boolean isActive) {
         this.id = id;
@@ -32,6 +41,7 @@ public class GameSession {
     public GameSession(String userName) {
         this.isCompleted = false;
         this.userName = userName;
+        this.startTime = LocalDateTime.now();
         this.id = "Game " + String.format("%05d", soId++);
         this.targetNumber = getRandomInt();
         this.guessList = new ArrayList<>();
@@ -96,5 +106,7 @@ public class GameSession {
         this.isCompleted = completed;
     }
 
-
+    public DateTimeFormatter getFormatter() {
+        return formatter;
+    }
 }

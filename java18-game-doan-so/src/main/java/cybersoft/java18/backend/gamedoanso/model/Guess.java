@@ -1,12 +1,14 @@
 package cybersoft.java18.backend.gamedoanso.model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Guess {
     private final int guessNum;
     private final String gameSessionId;
     private final LocalDateTime timestamp;
     private String result;
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
 
 
     public Guess(int guessNum, String result, GameSession gameSession) {
@@ -43,4 +45,7 @@ public class Guess {
         return this.guessNum;
     }
 
+    public DateTimeFormatter getFormatter() {
+        return formatter;
+    }
 }

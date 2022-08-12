@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class GuessRepository extends AbstractRepository<Guess> {
 
-    public Collection<? extends Guess> findGuessListByIdGame(String gameSessionId) {
+    public List<Guess> findGuessListByIdGame(String gameSessionId) {
         String query = "select * from Guess where game_session_id = ?";
         return executeQuery(query,new GuessMapper(),gameSessionId);
     }
@@ -18,4 +18,5 @@ public class GuessRepository extends AbstractRepository<Guess> {
         String query = "insert into Guess(guess_num, result, timestamp, game_session_id) values(?,?,?,?)";
         executeUpdate(query,guess.getGuessNum(),guess.getResult(),guess.getTimestamp(),guess.getGameSessionId());
     }
+
 }
