@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = UrlUtils.ALL,filterName = "Filter")
-public class Filter implements javax.servlet.Filter {
+@WebFilter(urlPatterns = UrlUtils.ALL,filterName = "AuthFilter")
+public class AuthFilter implements javax.servlet.Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {

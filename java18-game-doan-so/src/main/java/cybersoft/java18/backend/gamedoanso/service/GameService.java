@@ -83,9 +83,9 @@ public class GameService {
     }
 
     private void deactiveOtherGames(String userName) {
-        gameSessionRepository.findGamesByUserName(userName).stream()
-                .filter(gs -> gs.isActive())
-                .forEach(gs -> gs.setActive(false));
+        List<GameSession> gameList = gameSessionRepository.findGamesByUserName(userName);
+        gameList.forEach(gs -> gs.setActive(false));
+        gameList.forEach(gs -> gameSessionRepository.update(gs));
     }
 
 
@@ -102,6 +102,8 @@ public class GameService {
     }
 
     public void setCompletedGame(GameSession currentGame) {
+        currentGame.setCompleted(true);
+        currentGame.setEndTime(LocalDateTime.now());
         gameSessionRepository.update(currentGame);
     }
 }

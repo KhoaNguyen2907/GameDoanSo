@@ -7,8 +7,9 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-public class GameSessionMapper {
-    public static GameSession rowMapper(ResultSet resultSet) throws RuntimeException {
+public class GameSessionMapper implements AbstractMapper<GameSession> {
+    @Override
+    public GameSession rowMapper(ResultSet resultSet) {
         try {
             GameSession game = new GameSession(resultSet.getString("id"),
                     resultSet.getInt("target_num"),
@@ -25,4 +26,5 @@ public class GameSessionMapper {
             throw new RuntimeException(e.getMessage());
         }
     }
+
 }

@@ -10,4 +10,7 @@ public class UrlUtils {
     public static final String ALL = "/*";
     public static final String ROOT = "/";
     public static final String HEALTH = "/health";
+    public static final String NOT_FOUND = "/404";
+    public static final String INTERNAL_ERROR = "/500";
+
 }

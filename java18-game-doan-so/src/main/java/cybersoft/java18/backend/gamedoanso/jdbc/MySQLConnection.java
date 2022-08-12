@@ -10,12 +10,12 @@ public class MySQLConnection {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "1234";
 
-    public static Connection getConnection() throws Exception {
+    public static Connection getConnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             return DriverManager.getConnection(URL,USERNAME,PASSWORD);
         } catch (ClassNotFoundException | SQLException e) {
-            throw new Exception("Cannot connect to database");
+            throw new RuntimeException(e.getMessage());
         }
     }
 }

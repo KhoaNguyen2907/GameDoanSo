@@ -24,7 +24,7 @@ create table Guess (
     guess_num int not null,
     result varchar(100),
     timestamp timestamp,
-    game_session_id varchar(9) not null,
+    game_session_id varchar(15) not null,
     primary key (id)
     );
     
