@@ -3,11 +3,6 @@
 +src/main/webapp/WEB-INF/views/error/500.jsp,f\1\f12b12e5dfa9e2c9b2ed37b04438ea689ac6f5bf
 [
 +src/main/webapp/WEB-INF/views/error/404.jsp,0\9\09634baf865299b4fd8f160a8e8a0795331df2c6
-:
-
-.classpath,3\5\354079a72b91a4280407c16a36f47d1986fd85a5
-8
-.project,f\8\f8b41ce76d7b80d2b47e91b5f92c15f00eccf187
 K
 src/test/java/GameTest.java,4\e\4ebbdfdc8eb06f4ed2b0b122b53cc9c1bbfadf05
 k
@@ -16,12 +11,8 @@ v
 Fsrc/main/java/cybersoft/java18/backend/gamedoanso/store/GameStore.java,c\8\c80678055eb9b1740e9c12654d217a84f96484de
 |
 Lsrc/main/java/cybersoft/java18/backend/gamedoanso/store/GameStoreHolder.java,7\0\70623c78facef5ce5b60bccc8dd35400ef2c558f
-O
-src/main/webapp/WEB-INF/web.xml,2\e\2e22b6edd746fa3dc40ad7276c87c8d87d72a392
 z
 Jsrc/main/java/cybersoft/java18/backend/gamedoanso/servlet/AuthServlet.java,6\3\63a955a5ef282be27f946aee59ba8e89a1655a80
-t
-Dsrc/main/java/cybersoft/java18/backend/gamedoanso/filter/Filter.java,a\8\a886c1e74e4787931ff5e01cac6de57262e60071
 |
 Lsrc/main/java/cybersoft/java18/backend/gamedoanso/servlet/HealthServlet.java,e\d\ed17776bb1dcb37677f6c6c54cf9c61d7d9f03f6
 7
@@ -46,8 +37,6 @@ Rsrc/main/java/cybersoft/java18/backend/gamedoanso/repository/PlayerRepository.j
 Osrc/main/java/cybersoft/java18/backend/gamedoanso/mapper/GameSessionMapper.java,b\6\b662627e60beb7f7c6e506a5dd03ae924a6d4331
 y
 Isrc/main/java/cybersoft/java18/backend/gamedoanso/mapper/GuessMapper.java,0\9\0936f6d6adf0d11c1df296a359851f455ec48b1f
-y
-Isrc/main/java/cybersoft/java18/backend/gamedoanso/mapper/ParamMapper.java,f\d\fd4b99fa4139b6fcee4d5dbce341fb687c0595d2
 r
 Bsrc/main/java/cybersoft/java18/backend/gamedoanso/model/Guess.java,4\6\46f408b59184c1c7f182dffee63ff9df61d35da7
 Å
@@ -58,3 +47,5 @@ z
 Jsrc/main/java/cybersoft/java18/backend/gamedoanso/service/GameService.java,3\e\3ef75e86b20135661b64f761cb71847f3a6336a3
 á
 Wsrc/main/java/cybersoft/java18/backend/gamedoanso/repository/GameSessionRepository.java,4\5\45238a256e1bee1e477a73928b48ded754f4f3a9
+O
+src/main/webapp/WEB-INF/web.xml,2\e\2e22b6edd746fa3dc40ad7276c87c8d87d72a392
