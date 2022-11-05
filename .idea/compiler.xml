@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="game-doan-so" />
         <module name="java18-game-doan-so" />
+        <module name="GameDoanSo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="11" />
