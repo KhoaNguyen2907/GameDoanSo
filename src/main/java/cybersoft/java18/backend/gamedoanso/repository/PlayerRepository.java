@@ -1,12 +1,8 @@
 package cybersoft.java18.backend.gamedoanso.repository;
 
-import cybersoft.java18.backend.gamedoanso.jdbc.MySQLConnection;
 import cybersoft.java18.backend.gamedoanso.mapper.PlayerMapper;
 import cybersoft.java18.backend.gamedoanso.model.Player;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.List;
 
 public class PlayerRepository extends AbstractRepository<Player> {

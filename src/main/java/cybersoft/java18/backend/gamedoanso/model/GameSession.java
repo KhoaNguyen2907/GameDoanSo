@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Random;
 
 public class GameSession {
-    // Keep soId from reset when rerun server
+    // Keep soId from resetting when rerun server
     private static GameService gameService = GameService.getINSTANCE();
     private static int soId = gameService.getGameList().size()+1;
 

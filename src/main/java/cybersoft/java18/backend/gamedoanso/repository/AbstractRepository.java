@@ -1,14 +1,12 @@
 package cybersoft.java18.backend.gamedoanso.repository;
 
-import cybersoft.java18.backend.gamedoanso.jdbc.MySQLConnection;
+import cybersoft.java18.backend.gamedoanso.jdbc.PostgresqlConnection;
 import cybersoft.java18.backend.gamedoanso.mapper.AbstractMapper;
-import cybersoft.java18.backend.gamedoanso.mapper.TopRankMapper;
 
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class AbstractRepository<T> {
 
@@ -30,7 +28,7 @@ public class AbstractRepository<T> {
     }
 
     public List<T> executeQuery(String query, AbstractMapper<T> rowMapper, Object... parameter) {
-        try (Connection connection = MySQLConnection.getConnection()) {
+        try (Connection connection = PostgresqlConnection.getConnection()) {
             List<T> list = new ArrayList<>();
             PreparedStatement statement = connection.prepareStatement(query);
             setParameter(statement,parameter);
@@ -45,7 +43,7 @@ public class AbstractRepository<T> {
     }
 
     public void executeUpdate(String query, Object... parameter){
-        try (Connection connection = MySQLConnection.getConnection()){
+        try (Connection connection = PostgresqlConnection.getConnection()){
             PreparedStatement statement = connection.prepareStatement(query);
             setParameter(statement,parameter);
             statement.executeUpdate();
