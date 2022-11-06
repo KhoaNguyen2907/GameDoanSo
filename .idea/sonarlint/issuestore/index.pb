@@ -3,14 +3,6 @@
 +src/main/webapp/WEB-INF/views/error/500.jsp,f\1\f12b12e5dfa9e2c9b2ed37b04438ea689ac6f5bf
 [
 +src/main/webapp/WEB-INF/views/error/404.jsp,0\9\09634baf865299b4fd8f160a8e8a0795331df2c6
-K
-src/test/java/GameTest.java,4\e\4ebbdfdc8eb06f4ed2b0b122b53cc9c1bbfadf05
-k
-;src/main/java/cybersoft/java18/backend/gamedoanso/Game.java,2\d\2d4e096e5819b06445802bb0e32e8e7870c1df78
-v
-Fsrc/main/java/cybersoft/java18/backend/gamedoanso/store/GameStore.java,c\8\c80678055eb9b1740e9c12654d217a84f96484de
-|
-Lsrc/main/java/cybersoft/java18/backend/gamedoanso/store/GameStoreHolder.java,7\0\70623c78facef5ce5b60bccc8dd35400ef2c558f
 z
 Jsrc/main/java/cybersoft/java18/backend/gamedoanso/servlet/AuthServlet.java,6\3\63a955a5ef282be27f946aee59ba8e89a1655a80
 |

@@ -5,6 +5,7 @@
     <artifactId>game-doan-so</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
         <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
@@ -43,9 +44,6 @@
             <artifactId>postgresql</artifactId>
             <version>42.5.0</version>
         </dependency>
-
-
-
     </dependencies>
     <build>
         <plugins>
@@ -60,6 +58,13 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.2.3</version>
             </plugin>
+            <plugin>
+                <groupId>com.heroku.sdk</groupId>
+                <artifactId>heroku-maven-plugin</artifactId>
+                <version>3.0.5</version>
+            </plugin>
         </plugins>
+
     </build>
+
 </project>
